@@ -1,0 +1,15 @@
+def myRange(arg):
+	if len(arg) == 1:
+		start, stop, step = 0, arg[0],1
+	elif len(arg) == 2:
+		start, stop, step = arg[0], arg[1],1
+	elif len(arg) == 3: 
+		start, stop, step = arg[0], arg[1], arg[2]
+	else:
+		raise TypeError("myRange() accepts at most 3 arguments")
+
+results = []
+while (step > 0 and start < stop) or (step < 0 and start > stop):
+	result.append(start)
+	start += step
+return result
