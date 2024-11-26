@@ -1,3 +1,11 @@
+"""
+Author: Daniela Zamorano-Martinez
+Date: 11/25/24
+Assignment: Module 5 Practice Exercise 6-6
+Returns as a list with a specific number range. 
+
+"""
+
 def myRange(start, stop= None, step =1):
 #Starting the range
 	if stop is None:
