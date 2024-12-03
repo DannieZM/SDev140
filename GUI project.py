@@ -28,7 +28,7 @@ from tkinter import messagebox
 class GroceryListManager:
     def __init__(self, root):
         self.root = root
-        self.root.title("Grocery List Manager")
+        self.root.title("Grocery List")
         
 #Initialize grocery list
         self.grocery_list = []
@@ -38,7 +38,7 @@ class GroceryListManager:
         self.main_frame.pack(fill="both", expand=True)
 #POSSIBILY RESIZE#
 #Title Label
-        self.title_label = tk.Label(self.main_frame, text="Grocery List Manager", font=("Arial", 16), padx=20, pady=20)
+        self.title_label = tk.Label(self.main_frame, text="Grocery List ", font=("Open Sans", 16), padx=20, pady=20)
         self.title_label.pack()
 
 
@@ -80,6 +80,7 @@ class GroceryListManager:
         close_button = tk.Button(self.new_window, text="Close", command=self.new_window.destroy)
         close_button.pack(pady=5)
 
+#Validation Check
     def add_item(self):
         item = self.item_entry.get().strip()
         if not item:
