@@ -24,28 +24,47 @@ DOUBLE check requiements
 import tkinter as tk
 from tkinter import messagebox
 
+#This will allow me to import images to my code
+from PIL import Image, ImageTk
+
+
 #Main Application Class
 class GroceryListManager:
     def __init__(self, root):
         self.root = root
         self.root.title("Grocery List")
         
+
 #Initialize grocery list
         self.grocery_list = []
 
 #Main Window
         self.main_frame = tk.Frame(self.root)
         self.main_frame.pack(fill="both", expand=True)
-#POSSIBILY RESIZE#
+
 #Title Label
         self.title_label = tk.Label(self.main_frame, text="Grocery List ", font=("Open Sans", 16), padx=20, pady=20)
         self.title_label.pack()
 
+#Display my image and load it 
+        self.image = Image.open("C:/Users/danie/Downloads/Grocery Basket.jpg")
+        self.photo = ImageTk.PhotoImage(self.image)
+        self.image_label = tk.Label(self.main_frame, image = self.photo)
+        self.image_label.pack(pady=10)
 
  #Add Item Button
         self.add_item_button = tk.Button(self.main_frame, text="Add Item", command=self.open_add_window)
         self.add_item_button.pack(pady=5)
 
+#Remove Item Button 
+        self.remove_item_button = tk.Button(self.main_frame, text = "Remove item", command = self.open_remove_window)
+        self.remove_item_button.pack(pady = 5)
+
+    def open_remove_window(self):
+        self.new_window = tk.Toplevel(self.root)
+        self.new_window.title("Remove Item")
+
+        
 #View List Button
         self.view_list_button = tk.Button(self.main_frame, text="View Grocery List", command=self.open_view_window)
         self.view_list_button.pack(pady=5)
@@ -92,8 +111,20 @@ class GroceryListManager:
         self.grocery_list.append(item)
         messagebox.showinfo("Success", f"'{item}' has been added to your grocery list!")
         self.new_window.destroy()
+    
+    def remove_item(self):
+        item = self.item_entry_remove.get().strip()
+        if not item:
+                messagebox.showwarning("Input Error", "Please enter a valid item!")
+                return
+        if item not in self.grocery_list:
+                messagebox.showwarning("Input Error", f"'{item}' is not in the grocery list!")
+                return
+        self.grocery_list.remove(item)
+        messagebox.showinfo("Success", f"'{item}' has been removed from your grocery list!")
+        self.new_window.destroy()
 
-
+        
 #Run the program
 if __name__ == "__main__":
     root = tk.Tk()
